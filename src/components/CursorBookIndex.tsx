@@ -36,7 +36,14 @@ export default function CursorBookIndex() {
       onMouseMove={handleMouseMove}
       className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-[#EAE3D5]">
+      {/* Section Header with Scroll Reveal */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5 }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-[#EAE3D5]"
+      >
         <div>
           <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
             The Editorial Index
@@ -49,7 +56,7 @@ export default function CursorBookIndex() {
           Hover over any volume to reveal edition specifics, author insights, and
           digital preview files.
         </p>
-      </div>
+      </motion.div>
 
       {/* Interactive Cursor-Following Book Card (Desktop only) */}
       <motion.div
@@ -96,11 +103,15 @@ export default function CursorBookIndex() {
         )}
       </motion.div>
 
-      {/* The Interactive List */}
+      {/* The Interactive List with Staggered Scroll Reveal */}
       <div className="divide-y divide-[#EAE3D5]">
         {spotlightBooks.map((book, idx) => (
-          <div
+          <motion.div
             key={book.id}
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: idx * 0.08 }}
             onMouseEnter={() => setActiveBook(book)}
             onMouseLeave={() => setActiveBook(null)}
             className="group py-8 sm:py-10 transition-colors flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer"
@@ -164,7 +175,7 @@ export default function CursorBookIndex() {
                 </Link>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

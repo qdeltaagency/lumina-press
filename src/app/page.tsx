@@ -46,18 +46,25 @@ export default function HomePage() {
       <KineticHero />
 
       {/* 2. INFINITE KINETIC MARQUEE */}
-      <AnimatedMarquee
-        items={[
-          "INDEPENDENT DIGITAL EDITIONS",
-          "100% DRM-FREE SOVEREIGNTY",
-          "85% AUTHOR ROYALTIES",
-          "CALM DISTRACTION-FREE READING",
-          "EPUB & HIGH-RES PDF",
-        ]}
-        direction="left"
-        speed={32}
-        theme="dark"
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <AnimatedMarquee
+          items={[
+            "INDEPENDENT DIGITAL EDITIONS",
+            "100% DRM-FREE SOVEREIGNTY",
+            "85% AUTHOR ROYALTIES",
+            "CALM DISTRACTION-FREE READING",
+            "EPUB & HIGH-RES PDF",
+          ]}
+          direction="left"
+          speed={32}
+          theme="dark"
+        />
+      </motion.div>
 
       {/* 3. CURSOR-FOLLOWING EDITORIAL BOOK INDEX */}
       <CursorBookIndex />
@@ -541,17 +548,24 @@ export default function HomePage() {
       </section>
 
       {/* 12. SECONDARY REVERSE MARQUEE (TERRACOTTA) */}
-      <AnimatedMarquee
-        items={[
-          "DISCOVER SOMETHING WORTH READING",
-          "85% ROYALTY RATE",
-          "SOVEREIGN HUMAN INTELLECT",
-          "NO CORPORATE SPONSORS",
-        ]}
-        direction="right"
-        speed={36}
-        theme="terracotta"
-      />
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6 }}
+      >
+        <AnimatedMarquee
+          items={[
+            "DISCOVER SOMETHING WORTH READING",
+            "85% ROYALTY RATE",
+            "SOVEREIGN HUMAN INTELLECT",
+            "NO CORPORATE SPONSORS",
+          ]}
+          direction="right"
+          speed={36}
+          theme="terracotta"
+        />
+      </motion.div>
 
       {/* 13. READER TESTIMONIALS */}
       <section className="bg-[#F3EFE7] py-16 sm:py-20 border-y border-[#DDD4C3]">

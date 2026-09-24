@@ -9,6 +9,10 @@ An Awwwards-caliber digital bookstore and independent publishing platform built 
 ## ✨ Features
 
 - **Kinetic 3D Hero Experience**: Interactive mouse-tracking 3D book cover with tactile lighting and dynamic typography.
+- **Scroll Progress & Dynamic Viewport Reveals**:
+  - Global spring-damped reading scroll progress line across all pages.
+  - Staggered viewport entrance animations (`whileInView`) on book collections, author cards, categories, and testimonials.
+  - Floating smooth Scroll-to-Top control.
 - **Sticky Scrollytelling**: Seamless pinned feature journey through Focus, Immersion, Sovereignty, and Equity.
 - **Distraction-Free Digital Reader (`/reader/[slug]`)**:
   - Full-screen digital reading interface with Table of Contents.

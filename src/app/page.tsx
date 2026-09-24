@@ -74,7 +74,13 @@ export default function HomePage() {
 
       {/* 6. FEATURED BOOKS SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#EAE3D5]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#EAE3D5]"
+        >
           <div>
             <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
               Curated Selection
@@ -90,17 +96,31 @@ export default function HomePage() {
             <span>View All Titles</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
 
         {/* Editorial Feature Showcase Card */}
-        <div className="mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <BookCard book={featuredEditorialBook} variant="editorial" priority />
-        </div>
+        </motion.div>
 
         {/* Companion Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          {featuredBooks.map((book) => (
-            <BookCard key={book.id} book={book} />
+          {featuredBooks.map((book, idx) => (
+            <motion.div
+              key={book.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+            >
+              <BookCard book={book} />
+            </motion.div>
           ))}
         </div>
       </section>
@@ -110,7 +130,13 @@ export default function HomePage() {
         id="categories"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
       >
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
           <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
             Browse by Discipline
           </span>
@@ -121,49 +147,62 @@ export default function HomePage() {
             Deliberately curated categories spanning philosophy, technology,
             narrative fiction, and human potential.
           </p>
-        </div>
+        </motion.div>
 
         {/* Categories Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.slice(0, 6).map((cat) => (
-            <Link
+          {categories.slice(0, 6).map((cat, idx) => (
+            <motion.div
               key={cat.id}
-              href={`/category/${cat.slug}`}
-              className="group relative rounded-2xl overflow-hidden border border-[#DDD4C3] bg-[#FAF7F2] p-6 sm:p-7 hover:border-[#1E1C1A] transition-all duration-300 flex flex-col justify-between h-56 shadow-xs hover:shadow-md"
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.06 }}
             >
-              <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                <Image
-                  src={cat.image}
-                  alt={cat.name}
-                  fill
-                  className="object-cover grayscale group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono text-[#7A736B]">
-                    {cat.bookCount} Titles
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-[#F3EFE7] group-hover:bg-[#1E1C1A] group-hover:text-white flex items-center justify-center transition-colors">
-                    <ArrowUpRight className="w-4 h-4 text-[#7A736B] group-hover:text-white transition-colors" />
-                  </div>
+              <Link
+                href={`/category/${cat.slug}`}
+                className="group relative rounded-2xl overflow-hidden border border-[#DDD4C3] bg-[#FAF7F2] p-6 sm:p-7 hover:border-[#1E1C1A] transition-all duration-300 flex flex-col justify-between h-56 shadow-xs hover:shadow-md"
+              >
+                <div className="absolute inset-0 z-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                  <Image
+                    src={cat.image}
+                    alt={cat.name}
+                    fill
+                    className="object-cover grayscale group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
 
-                <h3 className="font-serif text-2xl font-medium text-[#1E1C1A] group-hover:text-[#A84C27] transition-colors mt-4">
-                  {cat.name}
-                </h3>
-              </div>
+                <div className="relative z-10">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-mono text-[#7A736B]">
+                      {cat.bookCount} Titles
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-[#F3EFE7] group-hover:bg-[#1E1C1A] group-hover:text-white flex items-center justify-center transition-colors">
+                      <ArrowUpRight className="w-4 h-4 text-[#7A736B] group-hover:text-white transition-colors" />
+                    </div>
+                  </div>
 
-              <p className="relative z-10 text-xs text-[#5C5751] line-clamp-2 leading-relaxed mt-2">
-                {cat.description}
-              </p>
-            </Link>
+                  <h3 className="font-serif text-2xl font-medium text-[#1E1C1A] group-hover:text-[#A84C27] transition-colors mt-4">
+                    {cat.name}
+                  </h3>
+                </div>
+
+                <p className="relative z-10 text-xs text-[#5C5751] line-clamp-2 leading-relaxed mt-2">
+                  {cat.description}
+                </p>
+              </Link>
+            </motion.div>
           ))}
         </div>
 
         {/* View all categories pills */}
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 flex flex-wrap justify-center gap-2"
+        >
           {categories.slice(6).map((cat) => (
             <Link
               key={cat.id}
@@ -176,13 +215,19 @@ export default function HomePage() {
               </span>
             </Link>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* 8. BEST SELLERS (NUMBERED HORIZONTAL TRACK) */}
       <section className="bg-[#1E1C1A] text-[#FAF7F2] py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#2C2926]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#2C2926]"
+          >
             <div>
               <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
                 Reader Favorites
@@ -195,12 +240,16 @@ export default function HomePage() {
               The most widely read and reviewed digital editions across the
               marketplace.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {bestSellers.slice(0, 5).map((book, idx) => (
-              <div
+              <motion.div
                 key={book.id}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
                 className="group relative flex flex-col justify-between bg-[#242220] rounded-xl p-4 border border-[#3A3632] hover:border-[#A84C27] transition-all"
               >
                 <div>
@@ -248,7 +297,7 @@ export default function HomePage() {
                     Sample →
                   </button>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -257,7 +306,13 @@ export default function HomePage() {
       {/* 9. EDITORIAL RECOMMENDATION ("Curated for Curious Minds") */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#FAF7F2] rounded-3xl border border-[#DDD4C3] p-8 sm:p-14 overflow-hidden relative paper-grain">
-          <div className="max-w-2xl mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mb-12"
+          >
             <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-2">
               The Editor's Dispatch
             </span>
@@ -269,10 +324,16 @@ export default function HomePage() {
               create, and think differently. Each edition includes formatted notes
               and author commentary.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 bg-[#F3EFE7] rounded-2xl p-6 sm:p-8 border border-[#EAE3D5] flex flex-col sm:flex-row gap-6 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-6 bg-[#F3EFE7] rounded-2xl p-6 sm:p-8 border border-[#EAE3D5] flex flex-col sm:flex-row gap-6 items-center"
+            >
               <div className="w-40 sm:w-48 aspect-[2/3] relative rounded shadow-xl shrink-0 overflow-hidden bg-[#EAE3D5]">
                 <div className="book-spine-effect" />
                 <Image
@@ -310,12 +371,16 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {editorialCurated.slice(1).map((book) => (
-                <div
+              {editorialCurated.slice(1).map((book, idx) => (
+                <motion.div
                   key={book.id}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: idx * 0.12 }}
                   className="p-5 rounded-2xl bg-[#F3EFE7] border border-[#EAE3D5] flex flex-col justify-between"
                 >
                   <div>
@@ -352,7 +417,7 @@ export default function HomePage() {
                       View →
                     </Link>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -361,7 +426,13 @@ export default function HomePage() {
 
       {/* 10. NEW RELEASES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#EAE3D5]">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-4 border-b border-[#EAE3D5]"
+        >
           <div>
             <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
               Fresh Off the Press
@@ -377,11 +448,19 @@ export default function HomePage() {
             <span>Explore New Releases</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          {newReleases.map((book) => (
-            <BookCard key={book.id} book={book} />
+          {newReleases.map((book, idx) => (
+            <motion.div
+              key={book.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+            >
+              <BookCard book={book} />
+            </motion.div>
           ))}
         </div>
       </section>
@@ -391,7 +470,13 @@ export default function HomePage() {
         id="authors"
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24"
       >
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
           <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27] block mb-1">
             Voices of Consequence
           </span>
@@ -402,12 +487,16 @@ export default function HomePage() {
             Independent researchers, essayists, and novelists writing without
             algorithmic compromise.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {authors.slice(0, 4).map((author) => (
-            <div
+          {authors.slice(0, 4).map((author, idx) => (
+            <motion.div
               key={author.id}
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group bg-[#FAF7F2] border border-[#DDD4C3] rounded-2xl p-6 hover:shadow-md hover:border-[#1E1C1A] transition-all flex flex-col justify-between"
             >
               <div>
@@ -446,7 +535,7 @@ export default function HomePage() {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>
@@ -466,7 +555,13 @@ export default function HomePage() {
 
       {/* 13. READER TESTIMONIALS */}
       <section className="bg-[#F3EFE7] py-16 sm:py-20 border-y border-[#DDD4C3]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8"
+        >
           <span className="text-xs font-semibold tracking-widest uppercase text-[#A84C27]">
             Reader Reflections
           </span>
@@ -486,71 +581,64 @@ export default function HomePage() {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* 14. TRUST & GUARANTEES */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 py-10 border-t border-[#EAE3D5]">
-          <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#DDD4C3] flex items-center justify-center shrink-0 text-[#A84C27]">
-              <Zap className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-semibold text-[#1E1C1A]">
-                Instant Digital Access
-              </h4>
-              <p className="text-xs text-[#5C5751] mt-1 leading-relaxed">
-                Receive your eBook immediately after successful payment in EPUB
-                and PDF formats.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#DDD4C3] flex items-center justify-center shrink-0 text-[#2B453D]">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-semibold text-[#1E1C1A]">
-                Secure Payments
-              </h4>
-              <p className="text-xs text-[#5C5751] mt-1 leading-relaxed">
-                Encrypted transactions supporting UPI, Cards, NetBanking, and
-                Stripe worldwide.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#DDD4C3] flex items-center justify-center shrink-0 text-[#9B783E]">
-              <Smartphone className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-semibold text-[#1E1C1A]">
-                Read Anywhere
-              </h4>
-              <p className="text-xs text-[#5C5751] mt-1 leading-relaxed">
-                Enjoy your titles across Kindle, Apple Books, Kobo, or right in
-                our distraction-free web reader.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex gap-4 items-start">
-            <div className="w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#DDD4C3] flex items-center justify-center shrink-0 text-[#1E1C1A]">
-              <Library className="w-5 h-5" />
-            </div>
-            <div>
-              <h4 className="font-serif text-base font-semibold text-[#1E1C1A]">
-                Lifetime Cloud Library
-              </h4>
-              <p className="text-xs text-[#5C5751] mt-1 leading-relaxed">
-                Your purchased library stays synchronized with reading progress
-                and unlimited re-downloads.
-              </p>
-            </div>
-          </div>
+          {[
+            {
+              icon: Zap,
+              title: "Instant Digital Access",
+              desc: "Receive your eBook immediately after successful payment in EPUB and PDF formats.",
+              color: "text-[#A84C27]",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Secure Payments",
+              desc: "Encrypted transactions supporting UPI, Cards, NetBanking, and Stripe worldwide.",
+              color: "text-[#2B453D]",
+            },
+            {
+              icon: Smartphone,
+              title: "Read Anywhere",
+              desc: "Enjoy your titles across Kindle, Apple Books, Kobo, or right in our distraction-free web reader.",
+              color: "text-[#9B783E]",
+            },
+            {
+              icon: Library,
+              title: "Lifetime Cloud Library",
+              desc: "Your purchased library stays synchronized with reading progress and unlimited re-downloads.",
+              color: "text-[#1E1C1A]",
+            },
+          ].map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                className="flex gap-4 items-start"
+              >
+                <div
+                  className={`w-10 h-10 rounded-xl bg-[#FAF7F2] border border-[#DDD4C3] flex items-center justify-center shrink-0 ${item.color}`}
+                >
+                  <Icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-serif text-base font-semibold text-[#1E1C1A]">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs text-[#5C5751] mt-1 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
     </div>

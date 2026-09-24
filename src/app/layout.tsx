@@ -7,6 +7,8 @@ import SearchOverlay from "@/components/SearchOverlay";
 import CartDrawer from "@/components/CartDrawer";
 import PreviewModal from "@/components/PreviewModal";
 import Footer from "@/components/Footer";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -41,9 +43,11 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col font-sans bg-[#FAF7F2] text-[#1E1C1A] selection:bg-[#E8DFD1] selection:text-[#1A1816] antialiased">
         <StoreProvider>
+          <ScrollProgressBar />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          <ScrollToTop />
           <BottomNav />
           <SearchOverlay />
           <CartDrawer />

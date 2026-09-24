@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif), "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+  
+  --color-paper-50: #FCFBF8;
+  --color-paper-100: #FAF7F2;
+  --color-paper-200: #F3EFE7;
+  --color-paper-300: #EAE3D5;
+  --color-paper-400: #DDD4C3;
+  --color-paper-500: #C2B6A1;
+  
+  --color-ink-950: #141312;
+  --color-ink-900: #1E1C1A;
+  --color-ink-800: #2C2926;
+  --color-ink-700: #423E3A;
+  --color-ink-600: #5C5751;
+  --color-ink-500: #7A736B;
+  --color-ink-400: #9C948B;
+  --color-ink-300: #BEB7AE;
+  --color-ink-200: #DFDACF;
+  --color-ink-100: #EDE9E1;
+
+  --color-accent-terracotta: #A84C27;
+  --color-accent-terracotta-hover: #903D1B;
+  --color-accent-terracotta-light: #FBF3EF;
+  --color-accent-forest: #2B453D;
+  --color-accent-gold: #9B783E;
+}
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #1E1C1A;
+}
+
+body {
+  background-color: #FAF7F2;
+  color: #1E1C1A;
+  font-family: var(--font-sans);
+}
+
+/* Typography helper classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Realistic Book 3D Spine and Depth */
+.book-cover-container {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.book-cover-container:hover {
+  transform: translateY(-6px) rotateY(-2deg) scale(1.01);
+}
+
+.book-spine-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 14px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(0, 0, 0, 0.15) 30%,
+    rgba(255, 255, 255, 0.35) 60%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  box-shadow: inset 1px 0 2px rgba(255, 255, 255, 0.3);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.book-shadow {
+  box-shadow: 
+    -4px 8px 24px -4px rgba(20, 18, 16, 0.18),
+    -1px 2px 8px -2px rgba(20, 18, 16, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.book-shadow-lg {
+  box-shadow: 
+    -8px 16px 36px -6px rgba(20, 18, 16, 0.22),
+    -2px 4px 12px -2px rgba(20, 18, 16, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Subtle Editorial Paper Grain Overlay */
+.paper-grain {
+  background-image: radial-gradient(rgba(30, 28, 26, 0.03) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3EFE7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9C1B4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A89F90;
+}
+
+/* Reader Themes */
+.reader-ivory {
+  background-color: #FAF7F2;
+  color: #1E1C1A;
+}
+
+.reader-sepia {
+  background-color: #F4ECD8;
+  color: #433222;
+}
+
+.reader-dark {
+  background-color: #141312;
+  color: #E2DDD5;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

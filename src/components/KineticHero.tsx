@@ -156,7 +156,7 @@ export default function KineticHero() {
             ref={cardRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="lg:col-span-5 flex justify-center items-center py-6 perspective-1000"
+            className="lg:col-span-5 flex justify-center items-center py-2 lg:-translate-y-8 perspective-1000"
           >
             <motion.div
               style={{
@@ -169,7 +169,7 @@ export default function KineticHero() {
               {/* Secondary Layered Book (Background Tilt) */}
               <div
                 style={{ transform: "translateZ(-40px) rotate(-8deg)" }}
-                className="absolute left-6 top-10 w-44 sm:w-52 aspect-[2/3] rounded-r-md rounded-l-xs overflow-hidden book-shadow-lg bg-[#EAE3D5] opacity-90 transition-transform"
+                className="absolute left-6 top-2 sm:top-0 w-44 sm:w-52 aspect-[2/3] rounded-r-md rounded-l-xs overflow-hidden book-shadow-lg bg-[#EAE3D5] opacity-90 transition-transform"
               >
                 <div className="book-spine-effect" />
                 <Image
@@ -183,7 +183,7 @@ export default function KineticHero() {
               {/* Main Prominent 3D Book */}
               <div
                 style={{ transform: "translateZ(30px) rotate(4deg)" }}
-                className="absolute right-6 top-4 w-48 sm:w-56 aspect-[2/3] rounded-r-md rounded-l-xs overflow-hidden book-shadow-lg bg-[#EAE3D5] transition-transform"
+                className="absolute right-6 -top-4 sm:-top-8 w-48 sm:w-56 aspect-[2/3] rounded-r-md rounded-l-xs overflow-hidden book-shadow-lg bg-[#EAE3D5] transition-transform"
               >
                 <div className="book-spine-effect" />
                 <Image
@@ -201,7 +201,7 @@ export default function KineticHero() {
               {/* Interactive Floating Badge (Foreground Z-depth) */}
               <motion.div
                 style={{ transform: "translateZ(60px)" }}
-                className="absolute -bottom-2 inset-x-4 p-4 rounded-2xl bg-[#FAF7F2]/95 backdrop-blur-md border border-[#DDD4C3] shadow-xl flex items-center gap-3"
+                className="absolute bottom-1 sm:bottom-3 inset-x-4 p-4 rounded-2xl bg-[#FAF7F2]/95 backdrop-blur-md border border-[#DDD4C3] shadow-xl flex items-center gap-3"
               >
                 <div className="w-10 h-10 rounded-full bg-[#A84C27]/10 flex items-center justify-center shrink-0">
                   <Sparkles className="w-5 h-5 text-[#A84C27]" />
